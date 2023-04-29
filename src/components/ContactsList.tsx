@@ -34,27 +34,40 @@ function ContactsList(props: any) {
         setShowPopup(false);
     }
 
+
+    const handleDeleteContact = (id: number) => {
+        props.deleteContact(id)
+    };
+
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="text-center">
                 <h1 className="text-4xl font-bold mb-4">Contacts</h1>
-                <button className="w-200 h-100 bg-gray-800 text-white text-lg font-bold px-4 py-4" onClick={handleAddContactClick}>Add Contact</button>
+                <button className="w-200 h-100 bg-gray-800 text-white text-lg font-bold px-4 py-4" onClick={handleAddContactClick}>Create Contact</button>
                 {showPopup && <ContactForm onClose={handleClosePopup} />}
-                <div>
-                    <ul className="mt-4">
-                        {props?.contacts.map((contact: any) => (
-                            <li key={contact.id}>
-                                <ContactCard
-                                    firstName={contact.firstName}
-                                    lastName={contact.lastName}
-                                    active={contact.status}
-                                    onEdit={() => console.log('Edit clicked')}
-                                    onDelete={() =>deleteContact(contact.id)}
-                                />
-                            </li>
-                        ))}
-                    </ul>
+                <div className="mt-4">
+                    {props.contacts.length > 0 ? (
+                        <ul className="space-y-4">
+                            {props.contacts.map((contact: Contact) => (
+                                <li key={contact.id}>
+                                    <ContactCard
+                                        id={contact.id}
+                                        firstName={contact.firstName}
+                                        lastName={contact.lastName}
+                                        active={contact.status}
+                                        onEdit={() => console.log('Edit clicked')}
+                                        onDelete={() => handleDeleteContact(contact.id)}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <div className="text-center bg-red-700 text-white text-lg font-bold p-4">
+                            <p className="mb-2">No contacts found. Please add contact from Create Contact button.</p>
+                            </div>
+                    )}
                 </div>
+
             </div>
         </div>
     );

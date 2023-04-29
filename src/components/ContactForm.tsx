@@ -25,9 +25,6 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
     const [firstName, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [status, setStatus] = useState(false);
-    const [contacts, setContacts] = useState<Contact[]>([]);
-
-    // const dispatch = useDispatch();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -37,9 +34,6 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
             lastName,
             status,
         };
-        console.log('Contact',firstName, lastName, status);
-        console.log(props)
-        // dispatch(addContact(newContact));
         props.addContact(newContact)
         setName('');
         setLastName('');
@@ -104,18 +98,20 @@ const ContactForm: React.FC<ContactFormProps> = (props) => {
                         </label>
                     </div>
                 </div>
+
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 mr-2  focus:outline-none focus:shadow-outline"
                 >
                     Create Contact
                 </button>
                 <button
                     onClick={() => props.onClose()}
-                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
                 >
                     Close Page
                 </button>
+
             </form>)
         </div>
     );
