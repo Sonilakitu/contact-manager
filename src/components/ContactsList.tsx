@@ -6,16 +6,29 @@ import ContactForm from './ContactForm';
 import { bindActionCreators } from 'redux';
 import ContactCard from './ContactCard';
 
+/**
+ * Maps the state values to props that are passed to the component.
+ * 
+ * @param state - The current state of the Redux store.
+ * @returns An object containing the state values to be passed as props.
+ */
 const mapStateToProps = (state: any) => {
     return state;
 }
 
+/**
+ * Maps the action creators to props that are passed to the component.
+ * 
+ * @param dispatch - A function used to dispatch actions to the Redux store.
+ * @returns An object containing the action creators to be passed as props.
+ */
 const mapDispatchToProps = (dispatch: any) => {
     return bindActionCreators({
         addContact: (obj: Contact) => dispatch(addContact(obj)),
         deleteContact: (id: number) => dispatch(deleteContact(id)),
     }, dispatch)
 }
+
 
 function ContactsList(props: any) {
     const [showPopup, setShowPopup] = useState(false);
@@ -34,7 +47,10 @@ function ContactsList(props: any) {
         setShowPopup(false);
     }
 
-
+    /**
+     * @description On Click on delete it will delete the selected contact
+     * @param id | number
+     */
     const handleDeleteContact = (id: number) => {
         props.deleteContact(id)
     };

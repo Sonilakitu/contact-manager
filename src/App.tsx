@@ -1,15 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 import ContactsList from './components/ContactsList';
 import Maps from './components/Maps';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import Home from './components/Home';
 
 const queryClient = new QueryClient();
 
 
 function App() {
   return (
-
     <QueryClientProvider client={queryClient}>
       <Router>
         <div className="flex min-h-screen">
@@ -33,7 +34,7 @@ function App() {
           {/* Content */}
           <div className="w-full p-8">
             <Routes>
-              <Route path="/" element={<h2>Welcome To User Dashboard</h2>} />
+              <Route path="/" element={<Home />} />
               <Route path="/contacts" element={<ContactsList />} />
               <Route path="/maps" element={<Maps />} />
             </Routes>
