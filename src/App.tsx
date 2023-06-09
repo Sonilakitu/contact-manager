@@ -7,8 +7,6 @@ import Maps from './components/Maps';
 import Home from './components/Home';
 
 const queryClient = new QueryClient();
-
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
